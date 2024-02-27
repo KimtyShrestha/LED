@@ -2,6 +2,9 @@ from tkinter import *
 from PIL import Image, ImageTk 
 from tkinter import messagebox 
 import sqlite3
+import subprocess  # Add this line for subprocess
+
+
 conn = sqlite3.connect("management.db")
 cursor = conn.cursor()
 cursor.execute("""CREATE TABLE IF NOT EXISTS data(
@@ -163,14 +166,12 @@ btn.place(x=35, y=204)
 lbl = Label(frame, text="Don't Have An Account?", fg='black', bg='gray', font=('Arial', 9))
 lbl.place(x=40, y=260)
 
-
 def forget_password_click(event):
-    forget_password_label.config(text="Forget Password", font=("Arial", 10, "underline"),background='gray')
-forget_password_label = Label(root, text="Forget Password?", font=("Arial", 10),background='gray')
+    subprocess.run(["python", "forgetstudent.py"])
+
+forget_password_label = Label(root, text="Forget Password?", font=("Arial", 10), background='gray')
 forget_password_label.place(x=520, y=360)
-
 forget_password_label.bind("<Button-1>", forget_password_click)
-
 
 
 
